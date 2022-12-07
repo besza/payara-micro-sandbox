@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 @Path("greeting")
 public class GreetingResource {
     @Inject
-    @ConfigProperty(name = "greeting.name", defaultValue = "Bob")
+    @ConfigProperty(name = "greeting.name", defaultValue = "Tom")
     private String name;
 
     @GET
