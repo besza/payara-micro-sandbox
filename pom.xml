@@ -9,15 +9,28 @@
 
     <name>${project.artifactId}</name>
 
+    <repositories>
+        <repository>
+            <id>payara-patched-externals</id>
+            <name>Payara Patched Externals</name>
+            <url>https://nexus.payara.fish/repository/payara-artifacts/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <microprofile.version>5.0</microprofile.version>
-        <jakartaee.version>10.0.0</jakartaee.version>
         <payara.micro.maven.plugin.version>1.4.0</payara.micro.maven.plugin.version>
-        <payara.micro.version>6.2023.1</payara.micro.version>
+        <payara.micro.version>6.2023.3</payara.micro.version>
     </properties>
 
 
@@ -30,6 +43,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>fish.payara.api</groupId>
+                <artifactId>payara-bom</artifactId>
+                <version>${payara.micro.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -37,17 +57,12 @@
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
-            <version>${microprofile.version}</version>
             <type>pom</type>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-web-api</artifactId>
-            <version>${jakartaee.version}</version>
-            <scope>provided</scope>
+            <artifactId>jakarta.jakartaee-api</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>io.rest-assured</groupId>
