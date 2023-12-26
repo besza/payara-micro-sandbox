@@ -30,7 +30,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <payara.micro.maven.plugin.version>1.4.0</payara.micro.maven.plugin.version>
-        <payara.micro.version>6.2023.3</payara.micro.version>
+        <payara.micro.version>6.2023.7</payara.micro.version>
     </properties>
 
 
@@ -39,7 +39,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.9.1</version>
+                <version>5.10.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -65,21 +65,16 @@
         </dependency>
 
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>5.3.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <version>2.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -106,28 +101,34 @@
                             <value>8083</value>
                         </option>
                         <option>
-                            <key>--nocluster</key>
+                            <key>--nohazelcast</key>
                         </option>
                         <option>
                             <key>--disablephonehome</key>
                         </option>
                     </commandLineOptions>
+                    <javaCommandLineOptions>
+                        <option>
+                            <key>-Djdk.util.zip.disableZip64ExtraFieldValidation</key>
+                            <value>true</value>
+                        </option>
+                    </javaCommandLineOptions>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.12.1</version>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M7</version>
+                <version>3.2.3</version>
                 <configuration>
                     <excludedGroups>integration</excludedGroups>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M7</version>
+                <version>3.2.3</version>
                 <executions>
                     <execution>
                         <goals>
